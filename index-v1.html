@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anpr-v1</title>
+
+</head>
+<style>
+    table, th, td {
+      border:1px solid black;
+      padding: 10px;
+    }
+</style>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyC3N7y7MP9VOMc68_1QqR7Z4mZ_iozJIz8",
+        authDomain: "anpr-mace.firebaseapp.com",
+        projectId: "anpr-mace",
+        storageBucket: "anpr-mace.appspot.com",
+        messagingSenderId: "618719025996",
+        appId: "1:618719025996:web:af7dd4388687dbe081cde9"
+    };
+
+
+    import {
+        getFirestore, doc, getDocs, setDoc, collection,
+    }
+        from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
+
+    initializeApp(firebaseConfig)
+    const db = getFirestore();
+
+    const colRef = collection(db, '01072022')
+
+    let fetBtn = document.getElementById("Fetbtn");
+
+
+    async function FetchDocument() {
+        getDocs(colRef)
+            .then((snapshot) => {
+                let fetchdatas = []
+                snapshot.docs.forEach((doc) => {
+                    fetchdatas.push({ ...doc.data()})
+                })
+                console.log(fetchdatas)
+
+                var myTable = "<table><th>SL.NO</th><th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Entry Time</th> <th>Exit Time</th><th>Whose</th><tr>";
+                var perrow = 2; // 2 CELLS PER ROW
+
+
+
+                var sl_no = 1;
+
+                fetchdatas.forEach(obj => {
+                    // const e = document.createElement('div')
+
+                    myTable += `
+                                <td>${sl_no}</td>
+                                <td>${obj.plate_num}</td>
+                                <td>${obj.details.EntryOrExit}</td>
+                                <td>${obj.details.date}</td>
+                                <td>${obj.details.entry_time}</td>
+                                <td>${obj.details.exit_time}</td>
+                                <td>${obj.details.whose}</td>
+                    `;
+
+                    myTable += "</tr><tr>"; 
+                    sl_no ++;
+
+                    
+                })
+                myTable += "</tr></table>";
+ 
+                // (D) ATTACH HTML TO CONTAINER
+                document.getElementById("container").innerHTML = myTable;
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }
+    fetBtn.addEventListener("click", FetchDocument);
+
+
+</script>
+
+<body>
+    <button id="Fetbtn">FETCH</button>
+    <div id="container"></div>
+    
+</body>
+
+</html>
