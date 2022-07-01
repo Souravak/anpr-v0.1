@@ -14,6 +14,8 @@
       padding: 10px;
     }
 </style>
+<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
     const firebaseConfig = {
@@ -27,14 +29,20 @@
 
 
     import {
-        getFirestore, doc, getDocs, setDoc, collection,
+        getFirestore, doc, getDocs, setDoc, collection
     }
         from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
 
     initializeApp(firebaseConfig)
     const db = getFirestore();
 
-    const colRef = collection(db, '01072022')
+    var today = new Date(); 
+    let month = today.getMonth()+1 > 10 ? (today.getMonth()+1) : '0'+(today.getMonth()+1); 
+    let day = today.getDate() > 10 ? today.getDate(): '0'+today.getDate(); 
+    var date = day+month+today.getFullYear();
+    console.log(date);
+
+    const colRef = collection(db, date)
 
     let fetBtn = document.getElementById("Fetbtn");
 
@@ -49,9 +57,6 @@
                 console.log(fetchdatas)
 
                 var myTable = "<table><th>SL.NO</th><th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Entry Time</th> <th>Exit Time</th><th>Whose</th><tr>";
-                var perrow = 2; // 2 CELLS PER ROW
-
-
 
                 var sl_no = 1;
 
