@@ -56,7 +56,7 @@
                 })
                 console.log(fetchdatas)
 
-                var myTable = "<table><th>SL.NO</th><th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Entry Time</th> <th>Exit Time</th><th>Whose</th><tr>";
+                var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Week</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
 
                 var sl_no = 1;
 
@@ -68,6 +68,7 @@
                                 <td>${obj.plate_num}</td>
                                 <td>${obj.details.EntryOrExit}</td>
                                 <td>${obj.details.date}</td>
+                                <td>${obj.details.week_day}</td>
                                 <td>${obj.details.entry_time}</td>
                                 <td>${obj.details.exit_time}</td>
                                 <td>${obj.details.whose}</td>
