@@ -1,0 +1,71 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+const firebaseConfig = {
+    apiKey: "AIzaSyC3N7y7MP9VOMc68_1QqR7Z4mZ_iozJIz8",
+    authDomain: "anpr-mace.firebaseapp.com",
+    projectId: "anpr-mace",
+    storageBucket: "anpr-mace.appspot.com",
+    messagingSenderId: "618719025996",
+    appId: "1:618719025996:web:af7dd4388687dbe081cde9"
+};
+import {getFirestore, doc, getDocs, setDoc, collection} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
+
+initializeApp(firebaseConfig)
+const db = getFirestore();
+
+var today = new Date(); 
+let month = today.getMonth()+1 > 10 ? (today.getMonth()+1) : '0'+(today.getMonth()+1); 
+let day = today.getDate() > 10 ? today.getDate(): '0'+today.getDate(); 
+var date = day+'-'+month+'-'+today.getFullYear();
+console.log(date);
+const colRef = collection(db, date)
+const get_vehicle_count = collection(db, 'number_of_vehicles_inside')
+getDocs(get_vehicle_count).then((snapshot) => {
+    let count_data = []
+
+    snapshot.docs.forEach((doc) => {
+        count_data.push({ ...doc.data()})
+    })
+
+    console.log(count_data)
+    var displayData = [];
+    count_data.forEach(obj => {
+        displayData = `${obj.number_of_vehicles_inside_now }`
+    })
+    document.getElementById("number_of_vehicles_present_now").innerHTML = displayData;
+})
+.catch(err => {console.log(err.message)})
+let fetBtn = document.getElementById("Fetbtn");
+function FetchDocument() {
+    getDocs(colRef)
+        .then((snapshot) => {
+            let fetchdatas = []
+            snapshot.docs.forEach((doc) => {
+                fetchdatas.push({ ...doc.data()})
+            })
+            console.log(fetchdatas)
+            var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Week</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
+            var sl_no = 1;
+            fetchdatas.forEach(obj => {
+                myTable += `
+                            <td>${sl_no}</td>
+                            <td>${obj.plate_num}</td>
+                            <td>${obj.details.EntryOrExit}</td>
+                            <td>${obj.details.date}</td>
+                            <td>${obj.details.week_day}</td>
+                            <td>${obj.details.entry_time}</td>
+                            <td>${obj.details.exit_time}</td>
+                            <td>${obj.details.whose}</td>
+                `;
+                myTable += "</tr><tr>"; 
+                sl_no ++;
+            })
+            myTable += "</tr></table>";
+            document.getElementById("container").innerHTML = myTable;
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+}
+fetBtn.addEventListener("click", FetchDocument);
+document.addEventListener("DOMContentLoaded", FetchDocument());
+// document.getElementById("tes").addEventListener("load", FetchDocument);
