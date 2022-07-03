@@ -19,22 +19,32 @@ var date = day+'-'+month+'-'+today.getFullYear();
 console.log(date);
 const colRef = collection(db, date)
 const get_vehicle_count = collection(db, 'number_of_vehicles_inside')
+var s="number_of_vehicles_inside_" + date;
+
+
 getDocs(get_vehicle_count).then((snapshot) => {
     let count_data = []
 
     snapshot.docs.forEach((doc) => {
-        count_data.push({ ...doc.data()})
+        if(doc.id == s) {
+            console.log(doc.id)
+            count_data.push({ ...doc.data()})
+        }
     })
 
     console.log(count_data)
     var displayData = [];
     count_data.forEach(obj => {
+        console.log(count_data);
         displayData = `${obj.number_of_vehicles_inside_now }`
     })
     document.getElementById("number_of_vehicles_present_now").innerHTML = displayData;
 })
 .catch(err => {console.log(err.message)})
 let fetBtn = document.getElementById("Fetbtn");
+
+
+
 function FetchDocument() {
     getDocs(colRef)
         .then((snapshot) => {
@@ -66,6 +76,7 @@ function FetchDocument() {
             console.log(err.message)
         })
 }
+
 fetBtn.addEventListener("click", FetchDocument);
 document.addEventListener("DOMContentLoaded", FetchDocument());
 // document.getElementById("tes").addEventListener("load", FetchDocument);
