@@ -21,6 +21,7 @@ const colRef = collection(db, date)
 const get_vehicle_count = collection(db, 'number_of_vehicles_inside')
 var s="number_of_vehicles_inside_" + date;
 
+document.getElementById("today-date").innerHTML = date;
 
 getDocs(get_vehicle_count).then((snapshot) => {
     let count_data = []
@@ -36,7 +37,7 @@ getDocs(get_vehicle_count).then((snapshot) => {
     var displayData = [];
     count_data.forEach(obj => {
         console.log(count_data);
-        displayData = `${obj.number_of_vehicles_inside_now }`
+        displayData = `${obj.number_of_vehicles_inside_now }`;
     })
     document.getElementById("number_of_vehicles_present_now").innerHTML = displayData;
 })
@@ -55,7 +56,10 @@ function FetchDocument() {
             console.log(fetchdatas)
             var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Week</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
             var sl_no = 1;
+            
             fetchdatas.forEach(obj => {
+                if(obj.details.entry_time == 'NULL') obj.details.entry_time = '';
+                if(obj.details.exit_time == 'NULL') obj.details.exit_time = '';
                 myTable += `
                             <td>${sl_no}</td>
                             <td>${obj.plate_num}</td>
