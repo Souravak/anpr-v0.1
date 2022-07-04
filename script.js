@@ -53,7 +53,17 @@ function FetchDocument() {
             snapshot.docs.forEach((doc) => {
                 fetchdatas.push({ ...doc.data()})
             })
+
+
             console.log(fetchdatas)
+            // sortng
+            fetchdatas.sort(function(a,b){
+                console.log(a.details.entry_time);
+                return a.details.entry_time.localeCompare(b.details.entry_time);
+            });
+            console.log(fetchdatas);
+
+
             var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Week</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
             var sl_no = 1;
             
