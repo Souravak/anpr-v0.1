@@ -13,7 +13,7 @@ initializeApp(firebaseConfig)
 const db = getFirestore();
 
 var today = new Date(); 
-let month = today.getMonth()+1 > 10 ? (today.getMonth()+1) : '0'+(today.getMonth()+1); 
+let month = today.getMonth()+1 >= 10 ? (today.getMonth()+1) : '0'+(today.getMonth()+1); 
 let day = today.getDate() > 10 ? today.getDate(): '0'+today.getDate(); 
 var date = day+'-'+month+'-'+today.getFullYear();
 console.log(date);
