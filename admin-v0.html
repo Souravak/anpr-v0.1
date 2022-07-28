@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>anpr-v1-admin</title>
+    <title>Admin Login</title>
     <link rel="icon" href="./assets/favicon.png">
 </head>
-
 <link rel="stylesheet" href="style.css">
-<script type="module" src="script-admin.js"></script>
-
-<body> 
-    <section class="top">
-        <button id="Fetbtn">FETCH LIST</button>
-        <div class="vehicle-count">
-            <span>Number of vehicles inside the campus : </span>
-            <span id="number_of_vehicles_present_now"></span>
-            <br>
-            <span>Today : </span>
-            <span id="today-date"></span>
+<body>
+    <h1 style="text-align:center;font-size:20pt; color:#040e04;">
+    ADMIN LOGIN
+    </h1>
+    <form name="login">
+        <div class="container">
+            <div class="field">
+                <input type="text" name="userid" placeholder="username">
+            </div>
+            <div class="field">
+                <input type="password" name="pswrd" placeholder="password">
+            </div>
+            <div class="field">
+                <input class="button login" type="button" onclick="check(this.form)" value="Login">
+            </div>
         </div>
-        <div id="list-details"></div>
-    </section>
+    </form>
 
-    <header class="head">
 
-    </header>
 
-    <section class="middle">
-
-    </section>
-
-    <section class="bottom">
-
-    </section>
-
-    <footer class="foot">
-
-    </footer>
-    
+    <script language="javascript">
+        function check(form){
+            if(form.userid.value == "admin" && form.pswrd.value == "admin@123"){
+                window.open('admin-index.html' , '_self')
+            }
+            else{
+                alert("Error Username or Password")
+            }
+        }
+    </script>
 </body>
-
 </html>

@@ -9,6 +9,7 @@ const firebaseConfig = {
 };
 import {getFirestore, doc, getDocs, setDoc, collection} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
 
+
 initializeApp(firebaseConfig)
 const db = getFirestore();
 
@@ -20,6 +21,7 @@ console.log(date);
 const colRef = collection(db, date)
 const get_vehicle_count = collection(db, 'number_of_vehicles_inside')
 var s="number_of_vehicles_inside_" + date;
+
 
 document.getElementById("today-date").innerHTML = date;
 

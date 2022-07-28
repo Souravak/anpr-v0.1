@@ -14,13 +14,13 @@ const db = getFirestore();
 
 
 //Default content
-document.getElementById("today-date").innerHTML = "Calculating";
-document.getElementById("recommended_time").innerHTML = "Calculating";
-document.getElementById("chance_of_getting_parking_slot_now").innerHTML = "Calculating";
-document.getElementById("number_of_vehicles_present_now").innerHTML = "Calculating";
-document.getElementById("number_of_parking_slots").innerHTML = "Calculating";
-document.getElementById("available_slots").innerHTML = "Calculating";
-document.getElementById("today-date").innerHTML = "Calculating";
+document.getElementById("today-date").innerHTML;
+document.getElementById("recommended_time").innerHTML;
+document.getElementById("chance_of_getting_parking_slot_now").innerHTML;
+document.getElementById("number_of_vehicles_present_now").innerHTML;
+document.getElementById("number_of_parking_slots").innerHTML;
+document.getElementById("available_slots").innerHTML;
+document.getElementById("today-date").innerHTML;
 
 var today = new Date(); 
 let month = today.getMonth() + 1 >= 10 ? (today.getMonth() + 1) : '0' + (today.getMonth() + 1); 
@@ -42,9 +42,9 @@ let fetBtn = document.getElementById("Fetbtn");
 
 
 
-var chance_of_getting_parking_slot_now = "loading..";
-var available_slots = "loading..";
-var recommended_time = "loading..";
+var chance_of_getting_parking_slot_now;
+var available_slots;
+var recommended_time;
 var number_of_parking_slots = 92;
 
 
@@ -116,7 +116,7 @@ function FetchPrediction() {
             console.log("Hello World");
             console.log(fetchdatas);
             console.log("Hello World");
-            let recommended_time = 'Loading..';
+            let recommended_time;
             var x;
             let big_rate = 0;
 
