@@ -58,24 +58,32 @@ function FetchDocument() {
             console.log(fetchdatas)
             // sortng
             fetchdatas.sort(function(a,b){
+                console.log("FUN HERE");
                 console.log(a.details.entry_time);
+                console.log(a.details);
+
+                console.log("FUN HERE");
+
+                
                 return a.details.entry_time.localeCompare(b.details.entry_time);
             });
             console.log(fetchdatas);
 
 
-            var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Date</th> <th>Week</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
+            var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
             var sl_no = 1;
             
             fetchdatas.forEach(obj => {
                 if(obj.details.entry_time == 'NULL') obj.details.entry_time = '';
                 if(obj.details.exit_time == 'NULL') obj.details.exit_time = '';
+                if(obj.details.EntryOrExit == 'entry') obj.details.EntryOrExit = 'Inside';
+                else obj.details.EntryOrExit = 'Left';
+                if(obj.details.whose == 'outsider') obj.details.whose = 'Visitor';
+                else obj.details.whose = 'Staff';
                 myTable += `
                             <td>${sl_no}</td>
                             <td>${obj.plate_num}</td>
                             <td>${obj.details.EntryOrExit}</td>
-                            <td>${obj.details.date}</td>
-                            <td>${obj.details.week_day}</td>
                             <td>${obj.details.entry_time}</td>
                             <td>${obj.details.exit_time}</td>
                             <td>${obj.details.whose}</td>
@@ -84,7 +92,7 @@ function FetchDocument() {
                 sl_no ++;
             })
             myTable += "</tr></table>";
-            document.getElementById("container").innerHTML = myTable;
+            document.getElementById("list-details").innerHTML = myTable;
         })
         .catch(err => {
             console.log(err.message)

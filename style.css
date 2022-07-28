@@ -19,3 +19,13 @@ tr, th, td{
 body{
     background: rgb(240, 240, 240);
 }
+.data-pane{
+    display: flex;
+    flex-direction: column;
+}
+.data-pane-insider :first-child{
+    width: 100px;
+}
+.test{
+    width: 1000px;
+}
