@@ -48,59 +48,58 @@ let fetBtn = document.getElementById("Fetbtn");
 
 
 
-function FetchDocument() {
-    getDocs(colRef)
-        .then((snapshot) => {
-            let fetchdatas = []
-            snapshot.docs.forEach((doc) => {
-                fetchdatas.push({ ...doc.data()})
-            })
+getDocs(colRef)
+    .then((snapshot) => {
+        let fetchdatas = []
+        snapshot.docs.forEach((doc) => {
+            fetchdatas.push({ ...doc.data()})
+        })
 
 
-            console.log(fetchdatas)
-            // sortng
-            fetchdatas.sort(function(a,b){
-                console.log("FUN HERE");
-                console.log(a.details.entry_time);
-                console.log(a.details);
+        console.log(fetchdatas)
+        // sortng
+        fetchdatas.sort(function(a,b){
+            console.log("FUN HERE");
+            console.log(a.details.entry_time);
+            console.log(a.details);
 
-                console.log("FUN HERE");
+            console.log("FUN HERE");
 
-                
-                return a.details.entry_time.localeCompare(b.details.entry_time);
-            });
-            console.log(fetchdatas);
-
-
-            var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
-            var sl_no = 1;
             
-            fetchdatas.forEach(obj => {
-                if(obj.details.entry_time == 'NULL') obj.details.entry_time = '';
-                if(obj.details.exit_time == 'NULL') obj.details.exit_time = '';
-                if(obj.details.EntryOrExit == 'entry') obj.details.EntryOrExit = 'Inside';
-                else obj.details.EntryOrExit = 'Left';
-                if(obj.details.whose == 'outsider') obj.details.whose = 'Visitor';
-                else obj.details.whose = 'Staff';
-                myTable += `
-                            <td>${sl_no}</td>
-                            <td>${obj.plate_num}</td>
-                            <td>${obj.details.EntryOrExit}</td>
-                            <td>${obj.details.entry_time}</td>
-                            <td>${obj.details.exit_time}</td>
-                            <td>${obj.details.whose}</td>
-                `;
-                myTable += "</tr><tr>"; 
-                sl_no ++;
-            })
-            myTable += "</tr></table>";
-            document.getElementById("list-details").innerHTML = myTable;
+            return a.details.entry_time.localeCompare(b.details.entry_time);
+        });
+        console.log(fetchdatas);
+
+
+        var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
+        var sl_no = 1;
+        
+        fetchdatas.forEach(obj => {
+            if(obj.details.entry_time == 'NULL') obj.details.entry_time = '';
+            if(obj.details.exit_time == 'NULL') obj.details.exit_time = '';
+            if(obj.details.EntryOrExit == 'entry') obj.details.EntryOrExit = 'Inside';
+            else obj.details.EntryOrExit = 'Left';
+            if(obj.details.whose == 'outsider') obj.details.whose = 'Visitor';
+            else obj.details.whose = 'Staff';
+            myTable += `
+                        <td>${sl_no}</td>
+                        <td>${obj.plate_num}</td>
+                        <td>${obj.details.EntryOrExit}</td>
+                        <td>${obj.details.entry_time}</td>
+                        <td>${obj.details.exit_time}</td>
+                        <td>${obj.details.whose}</td>
+            `;
+            myTable += "</tr><tr>"; 
+            sl_no ++;
         })
-        .catch(err => {
-            console.log(err.message)
-        })
-}
+        myTable += "</tr></table>";
+        document.getElementById("list-details").innerHTML = myTable;
+    })
+    .catch(err => {
+        console.log(err.message)
+    })
+
 
 // fetBtn.addEventListener("click", FetchDocument);
-document.addEventListener("DOMContentLoaded", FetchDocument());
+// document.addEventListener("DOMContentLoaded", FetchDocument());
 // document.getElementById("tes").addEventListener("load", FetchDocument);
