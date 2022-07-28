@@ -101,6 +101,6 @@ function FetchDocument() {
         })
 }
 
-fetBtn.addEventListener("click", FetchDocument);
+// fetBtn.addEventListener("click", FetchDocument);
 document.addEventListener("DOMContentLoaded", FetchDocument());
 // document.getElementById("tes").addEventListener("load", FetchDocument);
