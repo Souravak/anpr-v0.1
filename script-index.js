@@ -219,5 +219,5 @@ getDocs(get_vehicle_count).then((snapshot) => {
 })
 .catch(err => {console.log(err.message)})
 
-fetBtn.addEventListener("click", FetchPrediction);
+// fetBtn.addEventListener("click", FetchPrediction);
 document.addEventListener("DOMContentLoaded", FetchPrediction());

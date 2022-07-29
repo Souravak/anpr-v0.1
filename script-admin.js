@@ -63,7 +63,6 @@ getDocs(colRef)
             console.log(a.details);
 
             console.log("FUN HERE");
-            console.log("Hello there");
 
             
             return a.details.entry_time.localeCompare(b.details.entry_time);
