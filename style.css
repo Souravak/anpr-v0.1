@@ -86,6 +86,7 @@ input{
     border-radius: 3px;
 }
 .mace{
+    width: 100%;
     text-align: center;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
