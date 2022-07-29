@@ -45,7 +45,7 @@ let fetBtn = document.getElementById("Fetbtn");
 var chance_of_getting_parking_slot_now;
 var available_slots;
 var recommended_time;
-var number_of_parking_slots = 92;
+var number_of_parking_slots = 200;
 
 
 function current_hour(){
@@ -126,47 +126,47 @@ function FetchPrediction() {
 
 
                 // console.log(obj['8AM - 9AM']);
-                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
+                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
                 x = parseInt(obj[time_slot[time_slot_count++]]);
                 if(big_rate < x){
                     big_rate = x;
                     recommended_time = time_slot[time_slot_count-1]
                 }
-                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
+                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
                 x = parseInt(obj[time_slot[time_slot_count++]]);
                 if(big_rate < x){
                     big_rate = x;
                     recommended_time = time_slot[time_slot_count-1]
                 }
-                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
+                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
                 x = parseInt(obj[time_slot[time_slot_count++]]);
                 if(big_rate < x){
                     big_rate = x;
                     recommended_time = time_slot[time_slot_count-1]
                 }
-                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
+                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
                 x = parseInt(obj[time_slot[time_slot_count++]]);
                 if(big_rate < x){
                     big_rate = x;
                     recommended_time = time_slot[time_slot_count-1]
-                }myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
-                x = parseInt(obj[time_slot[time_slot_count++]]);
-                if(big_rate < x){
-                    big_rate = x;
-                    recommended_time = time_slot[time_slot_count-1]
-                }
-                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
-                x = parseInt(obj[time_slot[time_slot_count++]]);
-                if(big_rate < x){
-                    big_rate = x;
-                    recommended_time = time_slot[time_slot_count-1]
-                }myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
+                }myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
                 x = parseInt(obj[time_slot[time_slot_count++]]);
                 if(big_rate < x){
                     big_rate = x;
                     recommended_time = time_slot[time_slot_count-1]
                 }
-                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}</td></tr>`;
+                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
+                x = parseInt(obj[time_slot[time_slot_count++]]);
+                if(big_rate < x){
+                    big_rate = x;
+                    recommended_time = time_slot[time_slot_count-1]
+                }myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
+                x = parseInt(obj[time_slot[time_slot_count++]]);
+                if(big_rate < x){
+                    big_rate = x;
+                    recommended_time = time_slot[time_slot_count-1]
+                }
+                myTable += `<tr><td>${time_slot[time_slot_count]}</td><td>${obj[time_slot[time_slot_count]]}%</td></tr>`;
                 x = parseInt(obj[time_slot[time_slot_count++]]);
                 if(big_rate < x){
                     big_rate = x;

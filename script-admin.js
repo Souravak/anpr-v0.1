@@ -44,7 +44,6 @@ getDocs(get_vehicle_count).then((snapshot) => {
     document.getElementById("number_of_vehicles_present_now").innerHTML = displayData;
 })
 .catch(err => {console.log(err.message)})
-let fetBtn = document.getElementById("Fetbtn");
 
 
 
@@ -71,7 +70,7 @@ getDocs(colRef)
         console.log(fetchdatas);
 
 
-        var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Entry Time</th> <th>Exit Time</th> <th>Whose</th> <tr>';
+        var myTable = '<table> <th>SL.NO</th> <th>Number Plate</th> <th>Status</th> <th>Entry Time</th> <th>Exit Time</th> <th>Owner</th> <tr>';
         var sl_no = 1;
         
         fetchdatas.forEach(obj => {
@@ -100,6 +99,3 @@ getDocs(colRef)
     })
 
 
-// fetBtn.addEventListener("click", FetchDocument);
-// document.addEventListener("DOMContentLoaded", FetchDocument());
-// document.getElementById("tes").addEventListener("load", FetchDocument);
